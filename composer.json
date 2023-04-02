@@ -1,0 +1,16 @@
+{
+    "name": "ac/todo",
+    "description": "a simple todo list project.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aliac",
+            "email": "alimehdizadeh822@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "hekmatinasser/verta": "^8.3"
+    }
+}
