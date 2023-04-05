@@ -1,5 +1,12 @@
-<?php 
+<?php defined('BASE_PATH') or diepage("permission denied");
 
+//if(!defined('BASE_PATH')){
+//    echo 'permission denied';
+//    die();
+//} this is another kind of preventing a hacker to see errors of the program
+
+//how it works? well actually the app is running by index.php and all constants are included by constants.php
+//as we see in libs files we didnt include any constants so there we go...
 function diepage($msg){
     echo "<div style='margin:50px auto;
     width:70%;
@@ -18,4 +25,5 @@ function is_ajax_request(){
     return false;
 }
 
+//the function above checks if http request equals to ajax
 ?>

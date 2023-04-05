@@ -97,7 +97,7 @@
               alert(response);
             }
           }
-        }) //remember that this template is executing in index.php so url doesnt need to use ../ 
+        }) //remember that this template is executing by index.php so url doesnt need to use ../ 
       });
     });
   </script>
