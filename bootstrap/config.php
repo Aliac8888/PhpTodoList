@@ -1,10 +1,10 @@
 <?php 
 
-$database_config = [
-    "host" => "localhost",
-    "db" => "7task",
-    "user" => "root",
-    "pass" => ""
+$database_config = (object)[
+    'host' => 'localhost',
+    'db' => '7todo',
+    'user' => 'root',
+    'pass' => ''
 ];
 
 ?>
