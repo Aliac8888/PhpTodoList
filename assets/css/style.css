@@ -119,20 +119,28 @@ body {
   padding-left: 0px;
 }
 
-.main .nav .menu ul li a{
+a{
   text-decoration: none;
   color: black;
 }
 
-.remove{
+.r1{
+  text-decoration: none;
   color: black;
-  float: right;
-  font-weight: 500;
-  transition: .4s;
+  
 }
 
-.remove:hover{
-  transform: scale(1.9);
+.r2{
+  font-weight: 700;
+  transition: .4s;
+  float: right;
+  font-size: 18px;
+  padding-right: 10px;
+  color: black;
+}
+
+.r2:hover{
+  transform: scale(1.6);
   color: red;
 }
 
@@ -141,6 +149,11 @@ body {
   color: white;
   transition: .4s;
   border-radius: 5px;
+}
+
+.created-at{
+  margin-right: 12px;
+  font-size: 14px;
 }
 
 .clickable:hover{
@@ -164,6 +177,11 @@ body {
 .main .nav .menu ul li.active {
   color: #79BC46;
 }
+
+.main .nav .menu ul li.active a{
+  color: #79BC46;
+}
+
 .main .nav .menu ul li:hover {
   background-color: #999;
 }

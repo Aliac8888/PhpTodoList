@@ -18,6 +18,21 @@ function diepage($msg){
     die();
 };
 
+
+function dd1($var){
+    echo "<pre style='margin:50px auto;
+    padding:50px;
+    color:white;
+    z-index:900;
+    position:relative;
+    background-color:grey;
+    border:2px solid black;
+    border-radius:20px'>";
+    var_dump($var);
+    echo "</pre>";
+}
+//die and dump function
+
 function is_ajax_request(){
     if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) =='xmlhttprequest'){
         return true;
