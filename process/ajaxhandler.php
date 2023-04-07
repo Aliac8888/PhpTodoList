@@ -15,10 +15,22 @@ switch ($_POST['action']){
             echo "نام فولدر باید بزرگتر از دو حرف باشد";
             die();
         }
-        echo addfolders($_POST["foldername"]);
+        echo addfolder($_POST["foldername"]);
     break;
 
-    case "addfolder":
+    case "addtask":
+        $folder_id= $_POST['folder_id'];
+        $tasktitle = $_POST['tasktitle'];
+        if(!isset($folder_id) || empty($folder_id)){
+            echo ".ابتدا یک فولدر را انتخاب کنید";
+            die();
+        }
+
+        if(!isset($tasktitle) || strlen($tasktitle) < 3){
+            echo "نام یک تسک با حداقل ۳ حرف را وارد کنید";
+            die();
+        }
+        echo addtask($tasktitle,$folder_id);
 
     break;
 

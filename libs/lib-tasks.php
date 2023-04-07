@@ -11,14 +11,14 @@ function deletefolder($folder_id){
     return $dlrows;
 }
 
-function addfolders($folder_name){
+function addfolder($folder_name){
     global $pdo;
     $current_user_id = get_current_user_id();
     $sql = "insert into folders (name,user_id) values (:folder_name,:current_user_id)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(array(":folder_name"=>$folder_name,":current_user_id"=>$current_user_id));
     $dlrows = $stmt->rowCount();
-    return $dlrows ;
+    return $dlrows;
 }
 
 function getfolders(){
@@ -42,8 +42,14 @@ function deletetasks($task_id){
     return $dlrows;
 }
 
-function addtasks(){
-
+function addtask($tasktitle,$folderid){
+    global $pdo;
+    $current_user_id = get_current_user_id();
+    $sql = "insert into tasks (title,user_id,folder_id) values (:title,:user_id,:folder_id)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(array(":title"=>$tasktitle,":user_id"=>$current_user_id,":folder_id"=>$folderid));
+    $dlrows = $stmt->rowCount();
+    return $dlrows;
 }
 
 function gettasks(){
