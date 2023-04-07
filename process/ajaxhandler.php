@@ -19,9 +19,9 @@ switch ($_POST['action']){
     break;
 
     case "addtask":
-        $folder_id= $_POST['folder_id'];
+        $folderid= $_POST['folderid'];
         $tasktitle = $_POST['tasktitle'];
-        if(!isset($folder_id) || empty($folder_id)){
+        if(!isset($folderid) || empty($folderid)){
             echo ".ابتدا یک فولدر را انتخاب کنید";
             die();
         }
@@ -30,7 +30,8 @@ switch ($_POST['action']){
             echo "نام یک تسک با حداقل ۳ حرف را وارد کنید";
             die();
         }
-        echo addtask($tasktitle,$folder_id);
+
+        echo addtask($tasktitle,$folderid);
 
     break;
 

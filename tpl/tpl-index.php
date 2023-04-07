@@ -28,7 +28,7 @@
         <div class="title">Folders</div>
         <ul class="folder-list">
 
-          <li class="<?= (isset($_GET['folder_id'])) ? '': 'active' ?>"> <i class="fa fa-folder"></i>All</li>
+          <li class="<?= (empty($_GET['folder_id']) or isset($_GET['delete_task']) ) ? 'active':'' ?>"> <i class="fa fa-folder"></i>All</li>
           <?php foreach($folders as $folder):?>
           <li id="folder-item" class = "<?= ($_GET['folder_id'] == $folder->id) ? 'active' : '' ?>">
             <a href="?folder_id=<?php echo $folder->id ?>"><i class="fa fa-folder"></i><?php echo $folder->name ?></a>
@@ -97,30 +97,37 @@
           success: function(response){
             if (response == '1'){
               $('<li><a href="#"><i class="fa fa-folder"></i>'+input.val()+'</a><a class="remove" href="?delete_folder = folder_id">x</a></li>').appendTo('.folder-list');
+              location.reload();
             }else{
               alert(response);
             }
           }
         }) //remember that this template is executing by index.php so url doesnt need to use ../ 
       });
+
+
+      $('#tasknameinput').on('keypress',function(e){
+        e.stopPropagation();
+        if(e.which == 13){
+          $.ajax({
+            url:"process/ajaxhandler.php",
+            method:"post",
+            data: {action: "addtask",folderid: <?= $_GET['folder_id'] ?> ,tasktitle: $('#tasknameinput').val()},
+            success: function(response){
+              if (response == '1'){
+                location.reload();
+              }else{
+                alert(response);
+              }
+            }
+          });
+        }
+      });
+
+      $('#tasknameinput').focus();
     });
 
-    $('#tasknameinput').on(keypress,function(e){
-      if(e.which == 13){
-        $.ajax({
-          url:"process/ajaxhandler.php",
-          method:"post",
-          data: {action: "addtask",folder_id:<?= $_GET['folder_id'] ?> ,tasktitle: $('#tasknameinput').val()},
-          success: function(response){
-            if (response == '1'){
-              location.reload();
-            }else{
-              alert(response);
-            }
-          }
-        });
-      }
-    });
+
   </script>
 
 </body>
