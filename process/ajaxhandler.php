@@ -35,6 +35,16 @@ switch ($_POST['action']){
 
     break;
 
+    case "doneswitch":
+        $task_id = $_POST['taskID'];
+        if(!isset($task_id) || !is_numeric($task_id)){
+            echo "آیدی تسک معتبر نیست";
+            die();
+        }
+        doneswitch($task_id);
+        
+    break;
+
 
     default:
     diepage("invalid action");

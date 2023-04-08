@@ -68,4 +68,14 @@ function gettasks(){
     return $records;
 }
 
+function doneswitch($task_id){
+    global $pdo;
+    $current_user_id = get_current_user_id();
+    $sql = "update tasks set is_done = 1 - is_done where user_id = :userID and id = :taskID";//this query means if isdone was 0 now it toggles
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(array(":taskID"=>$task_id,":userID"=>$current_user_id));
+    $dlrows = $stmt->rowCount();
+    return $dlrows;
+}
+
 ?>

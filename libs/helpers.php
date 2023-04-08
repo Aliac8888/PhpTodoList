@@ -41,4 +41,10 @@ function is_ajax_request(){
 }
 
 //the function above checks if http request equals to ajax
+
+
+function site_url($uri = ''){
+    return BASE_URL . $uri;
+}
+
 ?>

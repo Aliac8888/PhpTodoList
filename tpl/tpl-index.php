@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL ?>assets/css/style.css">
   <?php 
   if(!isset($_GET['folder_id'])){
-    $_GET['folder_id'] = '';
+    $_GET['folder_id'] = 0;
   }
   ?>
 </head>
@@ -28,13 +28,17 @@
         <div class="title">Folders</div>
         <ul class="folder-list">
 
-          <li class="<?= (empty($_GET['folder_id']) or isset($_GET['delete_task']) ) ? 'active':'' ?>"> <i class="fa fa-folder"></i>All</li>
+          <li class="<?= (empty($_GET['folder_id']) or isset($_GET['delete_task']) ) ? 'active':'' ?>">
+          <a href="<?= site_url() ?>"><i class="fa fa-folder"></i>All</a>
+          </li>
+
           <?php foreach($folders as $folder):?>
           <li id="folder-item" class = "<?= ($_GET['folder_id'] == $folder->id) ? 'active' : '' ?>">
             <a href="?folder_id=<?php echo $folder->id ?>"><i class="fa fa-folder"></i><?php echo $folder->name ?></a>
             <a href="?delete_folder=<?php echo $folder->id ?>" class="r1" onclick= "return confirm('are you sure to delete <?php echo $folder->name ?> folder?');"><span class="r2">x</span></a>
           </li>
-          <?php endforeach; ?>
+          
+          <?php endforeach; //as we see two anchors above have two different ways to give the folder id but both return the same thing?>
 
         </ul>
       </div>
@@ -60,7 +64,7 @@
           <?php if(sizeof($tasks) > 0) :?>
             <?php foreach($tasks as $task):?>
               <li class="<?= $task->is_done ? "checked" : "" ?>">
-              <i class="<?= $task->is_done ? "fa fa-check-square-o" : "fa fa-square-o" ?>"></i>
+              <i data-taskid="<?= $task->id?>" class="isdone clickable <?= $task->is_done ? "fa fa-check-square-o" : "fa fa-square-o" ?>"></i>
 
               <span><?= $task->title ?></span>
 
@@ -88,6 +92,20 @@
   <script  src="assets/js/script.js"></script>
   <script>
     $(document).ready(function(){
+
+      $(".isdone").click(function(){
+        var tid = $(this).attr("data-taskid");
+        $.ajax({
+            url:"process/ajaxhandler.php",
+            method:"post",
+            data: {action: "doneswitch",taskID: tid},
+            success: function(response){
+                location.reload();
+            }
+          });
+      });
+
+
       $("#addfolderbtn").click(function(){
         var input = $("#addfolderinput");
         $.ajax({
