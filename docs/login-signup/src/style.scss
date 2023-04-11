@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css?family=Karla:400,700');
+
+$duo-1: #F8CB98;
+$dark-1: #997D5E;
+$duo-2: #AE94DE;
+$dark-2: #6E5E8C;
+$white: white;
+$white2: #F7F7F7;
+
+$image: url('https://i.imgur.com/vDhRJV5.jpg');
+
+@mixin center-absolute() {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+}
+
+@mixin title(){
+	font-size: 2em;
+	font-weight: bold;
+	margin: 15px;
+}
+
+@mixin noselect() {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none; 
+	user-select: none;
+}
+
+@mixin shadow-l($color, $op){
+	-webkit-box-shadow: 0vw 3vh 6vh -2vh rgba($color,$op);
+	-moz-box-shadow: 0vw 3vh 6vh -2vh rgba($color,$op);
+	box-shadow: 0vw 3vh 6vh -2vh rgba($color,$op);
+}
+
+@mixin shadow($color, $op){
+	-webkit-box-shadow: 0vw 1vh 3vh -1vh rgba($color,$op);
+	-moz-box-shadow: 0vw 1vh 3vh -1vh rgba($color,$op);
+	box-shadow: 0vw 1vh 3vh -1vh rgba($color,$op);
+}
+
+@mixin remove-style(){
+	border:none;
+	background-image:none;
+	background-color:transparent;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
+body{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-size: 16px;
+	font-family: 'Karla', sans-serif !important;
+}
+
+textarea, input {
+	@include remove-style();
+	min-height: 50px;
+	background-color: $white2;
+	padding: 15px;
+	box-sizing: border-box;
+	font-family: 'Karla', sans-serif !important;
+	border-radius: 25px;
+	&:focus{
+		outline: none;
+	}
+}
+
+button{
+	@include remove-style;
+	@include shadow(black, 0.3);
+	padding: 10px;
+	text-align: center;
+	height: 50px;
+	min-width: 80px;
+	font-family: 'Karla', sans-serif !important;
+	border-radius: 25px;
+	box-sizing: border-box;
+	font-weight: 800;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	&:focus{
+		outline: none;
+	}
+}
+
+#background{
+	position: fixed;
+	background-color: $duo-1;
+	width: 100%;
+	height: 100%;
+	transition: all 0.3s ease-in-out;
+}
+
+#background.two{
+	background-color: $duo-2;
+}
+
+#panel-box{
+	@include center-absolute;
+	@include shadow-l(black, 0.4);
+	position: absolute;
+	height: 700px;
+	min-width: 800px;
+	width: 60%;
+	max-width: 1000px;
+	box-sizing: border-box;
+	overflow: hidden;
+	background-color: $white;
+	border-radius: 20px;
+}
+
+.panel{
+	display: inline-block;
+	position: relative;
+	height: 100%;
+	&:nth-child(1){
+		float: left;
+		width: 40%;
+		overflow: hidden;
+		.auth-form{
+			@include center-absolute;
+			width: 70%;
+			max-width: 250px;
+			left: 100%;
+			text-align: center;
+			opacity: 0;
+			transition: all 0.3s ease-in-out;
+		}
+		.auth-form.on{
+			opacity: 1;
+			@include center-absolute;
+		}
+	}
+	&:nth-child(2){
+		float: right;
+		width: 60%;
+		#switch{
+			@include noselect();
+			@include shadow(black, 0.8);
+			cursor: pointer;
+			padding: 10px;
+			text-align: center;
+			line-height: 30px;
+			height: 50px;
+			min-width: 124px;
+			display: block; 
+			z-index: 99;
+			position: absolute;
+			box-sizing: border-box;
+			border-radius: 50px;
+			background: $duo-2;
+			color: $white;
+			font-weight: bold;
+			top: 40px;
+			left: -62px;
+			transition: all 0.3s ease-in-out;
+		}
+		#switch.two{
+			background: $duo-1;
+		}
+	}
+}
+
+.auth-form:nth-child(1){
+	height: 350px;
+	#form-title{
+		@include title();
+		color: $duo-1;
+	}
+	input{
+		width: 100%;
+		margin: 20px 0;
+		&:focus{
+			border: solid $duo-1;
+		}
+	}
+	button{
+		background-color: $duo-1;
+		color: $white;
+		margin: 20px 0;
+	}
+}
+
+.auth-form:nth-child(2){
+	height: 350px;
+	#form-title{
+		@include title();
+		color: $duo-2;
+	}
+	input{
+		width: 100%;
+		margin: 20px 0;
+		&:focus{
+			border: solid $duo-2;
+		}
+	}
+	button{
+		background-color: $duo-2;
+		color: $white;
+		margin: 20px 0;
+	}
+}
+
+#image-side{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background: url('https://images.unsplash.com/photo-1512805147242-c3e79caf64bf?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ');
+	background-size: auto 100%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+#image-overlay{
+	display: block;
+	position: absolute;
+	z-index: 9;
+	height: 100%;
+	width: 100%;
+	opacity: 0.3;
+	background-color: $duo-1;
+	transition: all 0.3s ease-in-out;
+}
+
+#image-overlay.two{
+	background-color: $duo-2;
+}
+

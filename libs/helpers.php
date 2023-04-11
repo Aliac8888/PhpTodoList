@@ -18,6 +18,21 @@ function diepage($msg){
     die();
 };
 
+function redirect($url){
+    header("location: $url");
+    die();
+}
+
+function message($msg,$cssclass='info'){
+    echo "<div class='$cssclass' style='margin:50px auto;
+    width:70%;
+    padding:50px;
+    color:white;
+    background-color:grey;
+    border:2px solid black;
+    border-radius:20px'>$msg</div>";
+};
+
 
 function dd1($var){
     echo "<pre style='margin:50px auto;

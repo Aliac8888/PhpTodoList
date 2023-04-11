@@ -313,3 +313,16 @@ a{
 .clear {
   clear: both;
 }
+
+.success{
+  background-color: aquamarine !important;
+  border:2px solid black !important;
+  color: black !important;
+}
+
+#logout{
+  color: #E0E0E0;
+  font-size: 18px;
+  text-decoration: none;
+  transition: .4s;
+}

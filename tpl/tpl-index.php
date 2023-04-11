@@ -15,7 +15,11 @@
 <div class="page">
   <div class="pageHeader">
     <div class="title">Dashboard</div>
-    <div class="userPanel"><i class="fa fa-chevron-down"></i><span class="username">John Doe </span><img src="" width="40" height="40"/></div>
+    <div class="userPanel">
+      <a href="<?= site_url("?logout=1") ?>" onclick= "return confirm('do you want to logout?');"><i id="logout" class="fa fa-sign-out clickable"></i></a>
+
+      <span class="username"><?= $user->name ?? 'unknown'; ?></span>
+    <img src="<?= $user->image  ?>" width="40" height="40"/></div>
   </div>
   <div class="main">
     <div class="nav">
@@ -50,7 +54,7 @@
     <div class="view">
       <div class="viewHeader">
         <div class="title" style="width: 50%;">
-          <input type="text" id="tasknameinput" placeholder="add new task" style="width: 100%;margin-left: 3%;line-height:30px; padding-left:5px">
+          <input type="text" id="tasknameinput" placeholder="add new task (press enter)" style="width: 100%;margin-left: 3%;line-height:30px; padding-left:5px">
         </div>
         <div class="functions">
           <div class="button active">Add New Task</div>

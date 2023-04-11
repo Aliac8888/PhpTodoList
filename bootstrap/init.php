@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 include "constants.php";
 include BASE_PATH."bootstrap/config.php";//if we dont use base(root) path and dont include full path an error will occur
 include BASE_PATH."vendor/autoload.php"; 
