@@ -47,13 +47,26 @@ function getloggedinuser(){
 
 function register($userdata){
     global $pdo;
-    //name , email , password validation check
-    $pass_hash = password_hash($userdata['password'],PASSWORD_BCRYPT);
-    $sql = "insert into users (name,email,password) values (:name,:email,:pass)"; 
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(array(":name"=>$userdata['username'],":email"=>$userdata['email'],":pass"=>$pass_hash));
-    $dlrows = $stmt->rowCount() ? true : false;//if rowcount is 0 false and if it has value its true
-    return $dlrows;
+    $email = $userdata["email"];  
+    $pattern = "^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^"; 
+    //password validation check later.
+    if(!preg_match("/^[a-zA-z]*$/", $userdata['username']) or empty($userdata['username'])){
+        diepage("username must just contain alphabets". PHP_EOL . "<a href='http://localhost:8012/todo/auth.php'>click to try sign up again</a>");
+
+    }
+    elseif(!preg_match($pattern, $email) or empty($email)){
+        diepage("not a valid email". PHP_EOL . "<a href='http://localhost:8012/todo/auth.php'>click to try sign up again</a>");
+    }
+    else{    
+        $pass_hash = password_hash($userdata['password'],PASSWORD_BCRYPT);
+        $sql = "insert into users (name,email,password) values (:name,:email,:pass)"; 
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(array(":name"=>$userdata['username'],":email"=>$userdata['email'],":pass"=>$pass_hash));
+        $dlrows = $stmt->rowCount() ? true : false;//if rowcount is 0 false and if it has value its true
+        return $dlrows;
+    }
+
+
 }
 
 ?>

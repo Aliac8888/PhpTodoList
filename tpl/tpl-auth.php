@@ -25,7 +25,7 @@
 				<form action="<?= site_url('auth.php?action=register') ?>" method="POST">
 					<input name="username" type="text" required="required" placeholder="Username"/>
 					<input name="password" type="password" required="required" placeholder="Password"/>
-          <input name="email" type="text" required="required" placeholder="Email"/>
+          			<input name="email" type="text" required="required" placeholder="Email"/>
 					<button type="Submit">Sign Up</button>
 				</form>
 			</div>
